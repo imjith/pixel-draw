@@ -20,9 +20,7 @@ var app = new Vue({
         },
 
         fillPixel: function (n) {
-            let tmp = this.colorArr.slice()
-            tmp[n] = this.activeColor
-            this.colorArr = tmp
+            this.colorArr.splice(n,1,this.activeColor)
         },
 
         clear: function () {
