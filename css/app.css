@@ -5,8 +5,9 @@
 }
 
 .active {
-    border-color: yellow;
-    border-width: 3px;
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    border-width: 2px;
+    border-color: rgba(81, 203, 238, 1);
 }
 
 .canvas {
