@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PixelDraw</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+
+<body>
+    <div id="app" class="container">
+        <h1 class="display-4">PIXEL DRAW</h1>
+        <div class="row">
+            <div class="color-picker">
+                <pixel v-bind:class="['green',{active: activeColor=='green'}]" v-on:click.native="selectColor('green')"></pixel>
+                <pixel v-bind:class="['blue',{active: activeColor=='blue'}]" v-on:click.native="selectColor('blue')"></pixel>
+                <pixel v-bind:class="['red',{active: activeColor=='red'}]" v-on:click.native="selectColor('red')"></pixel>
+                <pixel v-bind:class="['yelloworange',{active: activeColor=='yelloworange'}]" v-on:click.native="selectColor('yelloworange')"></pixel>
+                <pixel v-bind:class="['black',{active: activeColor=='black'}]" v-on:click.native="selectColor('black')"></pixel>
+                <pixel v-bind:class="['orange',{active: activeColor=='orange'}]" v-on:click.native="selectColor('orange')"></pixel>
+                <pixel v-bind:class="['yellow',{active: activeColor=='yellow'}]" v-on:click.native="selectColor('yellow')"></pixel>
+                <pixel v-bind:class="['white',{active: activeColor=='white'}]" v-on:click.native="selectColor('white')"></pixel>
+            </div>
+            <div class="canvas">
+                <pixel v-for="n in 20*20" v-bind:key="n" v-bind:color="colorArr[n]" v-on:click.native="fillPixel(n)"></pixel>
+            </div>
+        </div>
+        <div class="row">
+            <button class="btn btn-danger btn-clear" v-on:click="clear()">Clear canvas</button>
+        </div>
+
+    </div>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

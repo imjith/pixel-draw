@@ -1,0 +1,57 @@
+.pixel {
+    border: 1px solid lightgray;
+    width: 25px;
+    height: 25px;
+}
+
+.active {
+    border-color: yellow;
+    border-width: 3px;
+}
+
+.canvas {
+    display: flex;
+    flex-wrap: wrap;
+    width: 500px;
+}
+
+.white {
+    background-color: #ffffff;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.red {
+    background-color: #EF0B0B;
+}
+
+.green {
+    background-color: green;
+}
+
+.yelloworange {
+    background-color: #FFA642
+}
+
+.black {
+    background-color: #1c1c1c
+}
+
+.orange {
+    background-color: orangered
+}
+.yellow {
+    background-color: yellow
+}
+
+.color-picker{
+    margin-right: 15px;
+}
+
+.btn-clear{
+    display: block;
+    margin-left: 40px;
+    margin-top: 15px;
+}
