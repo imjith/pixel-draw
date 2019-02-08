@@ -3,14 +3,7 @@
         <h1 class="display-4">PIXEL DRAW</h1>
         <div class="row">
             <div class="color-picker">
-                <Pixel :class="['green',{active: activeColor=='green'}]" @click.native="selectColor('green')"></Pixel>
-                <Pixel :class="['blue',{active: activeColor=='blue'}]" @click.native="selectColor('blue')"></Pixel>
-                <Pixel :class="['red',{active: activeColor=='red'}]" @click.native="selectColor('red')"></Pixel>
-                <Pixel :class="['yelloworange',{active: activeColor=='yelloworange'}]" @click.native="selectColor('yelloworange')"></Pixel>
-                <Pixel :class="['black',{active: activeColor=='black'}]" @click.native="selectColor('black')"></Pixel>
-                <Pixel :class="['orange',{active: activeColor=='orange'}]" @click.native="selectColor('orange')"></Pixel>
-                <Pixel :class="['yellow',{active: activeColor=='yellow'}]" @click.native="selectColor('yellow')"></Pixel>
-                <Pixel :class="['white',{active: activeColor=='white'}]" @click.native="selectColor('white')"></Pixel>
+                <Pixel v-for="color in colorPalette" key="color" :class="[color,{active: activeColor==color}]" @click.native="selectColor(color)"></Pixel>
             </div>
             <div class="canvas">
                 <Pixel v-for="n in 20*20" :key="n" :color="colorArr[n]" @click.native="fillPixel(n)"></pixel>
@@ -33,7 +26,8 @@
         data() {
             return {
                 activeColor: 'green',
-                colorArr: Array(401).fill('white')
+                colorArr: Array(401).fill('white'),
+                colorPalette: ['green', 'blue', 'red', 'yelloworange', 'black', 'orange', 'yellow', 'white']
             }
         },
         methods: {
