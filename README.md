@@ -1,7 +1,7 @@
 Simple Pixel draw app using Vue.js
 
 #### Steps to build the project
-1. `` cd project folder ``
+1. `` cd into project folder ``
 2. `` yarn or npm install ``
 3. `` yarn build or npm run build``
 
