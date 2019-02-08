@@ -15,21 +15,21 @@
         <h1 class="display-4">PIXEL DRAW</h1>
         <div class="row">
             <div class="color-picker">
-                <pixel v-bind:class="['green',{active: activeColor=='green'}]" v-on:click.native="selectColor('green')"></pixel>
-                <pixel v-bind:class="['blue',{active: activeColor=='blue'}]" v-on:click.native="selectColor('blue')"></pixel>
-                <pixel v-bind:class="['red',{active: activeColor=='red'}]" v-on:click.native="selectColor('red')"></pixel>
-                <pixel v-bind:class="['yelloworange',{active: activeColor=='yelloworange'}]" v-on:click.native="selectColor('yelloworange')"></pixel>
-                <pixel v-bind:class="['black',{active: activeColor=='black'}]" v-on:click.native="selectColor('black')"></pixel>
-                <pixel v-bind:class="['orange',{active: activeColor=='orange'}]" v-on:click.native="selectColor('orange')"></pixel>
-                <pixel v-bind:class="['yellow',{active: activeColor=='yellow'}]" v-on:click.native="selectColor('yellow')"></pixel>
-                <pixel v-bind:class="['white',{active: activeColor=='white'}]" v-on:click.native="selectColor('white')"></pixel>
+                <pixel :class="['green',{active: activeColor=='green'}]" @click.native="selectColor('green')"></pixel>
+                <pixel :class="['blue',{active: activeColor=='blue'}]" @click.native="selectColor('blue')"></pixel>
+                <pixel :class="['red',{active: activeColor=='red'}]" @click.native="selectColor('red')"></pixel>
+                <pixel :class="['yelloworange',{active: activeColor=='yelloworange'}]" @click.native="selectColor('yelloworange')"></pixel>
+                <pixel :class="['black',{active: activeColor=='black'}]" @click.native="selectColor('black')"></pixel>
+                <pixel :class="['orange',{active: activeColor=='orange'}]" @click.native="selectColor('orange')"></pixel>
+                <pixel :class="['yellow',{active: activeColor=='yellow'}]" @click.native="selectColor('yellow')"></pixel>
+                <pixel :class="['white',{active: activeColor=='white'}]" @click.native="selectColor('white')"></pixel>
             </div>
             <div class="canvas">
-                <pixel v-for="n in 20*20" v-bind:key="n" v-bind:color="colorArr[n]" v-on:click.native="fillPixel(n)"></pixel>
+                <pixel v-for="n in 20*20" :key="n" :color="colorArr[n]" @click.native="fillPixel(n)"></pixel>
             </div>
         </div>
         <div class="row">
-            <button class="btn btn-danger btn-clear" v-on:click="clear()">Clear canvas</button>
+            <button class="btn btn-danger btn-clear" @click="clear()">Clear canvas</button>
         </div>
 
     </div>

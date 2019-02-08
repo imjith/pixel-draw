@@ -7,7 +7,6 @@ var app = new Vue({
     el: '#app',
     components: {
         pixel
-
     },
     data: {
         activeColor: 'green',
@@ -15,15 +14,15 @@ var app = new Vue({
     },
 
     methods: {
-        selectColor: function (clr) {
+        selectColor(clr) {
             this.activeColor = clr
         },
 
-        fillPixel: function (n) {
+        fillPixel(n) {
             this.colorArr.splice(n,1,this.activeColor)
         },
 
-        clear: function () {
+        clear() {
             this.colorArr = Array(401).fill('')
         }
 

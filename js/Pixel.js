@@ -4,5 +4,5 @@ var pixel = { props: ['color'],
 
 export default {
     name:'pixel',
-   components: pixel
+   	components: pixel
 };
