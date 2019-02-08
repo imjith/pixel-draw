@@ -1,0 +1,23 @@
+{
+  "name": "pixel-draw",
+  "version": "1.0.0",
+  "description": "a simple pixel draw app using vuejs",
+  "main": "index.js",
+  "repository": "https://github.com/hishamhaniffa/pixel-draw.git",
+  "author": "Sreejith <sreejith@tpconnects.com>, Hisham Haniffa <hishamhaniffa4@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3",
+    "@babel/core": "^7.2.2",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.0",
+    "vue-loader": "^15.6.2",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.3"
+  }
+}
