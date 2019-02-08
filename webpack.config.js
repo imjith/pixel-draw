@@ -3,7 +3,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
 	mode: 'development',
-	entry: './js/app.js',
+	entry: './js/index.js',
 	module: {
 		rules: [
 			{

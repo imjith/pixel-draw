@@ -7,31 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PixelDraw</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/app.css">
 </head>
 
 <body>
-    <div id="app" class="container">
-        <h1 class="display-4">PIXEL DRAW</h1>
-        <div class="row">
-            <div class="color-picker">
-                <pixel :class="['green',{active: activeColor=='green'}]" @click.native="selectColor('green')"></pixel>
-                <pixel :class="['blue',{active: activeColor=='blue'}]" @click.native="selectColor('blue')"></pixel>
-                <pixel :class="['red',{active: activeColor=='red'}]" @click.native="selectColor('red')"></pixel>
-                <pixel :class="['yelloworange',{active: activeColor=='yelloworange'}]" @click.native="selectColor('yelloworange')"></pixel>
-                <pixel :class="['black',{active: activeColor=='black'}]" @click.native="selectColor('black')"></pixel>
-                <pixel :class="['orange',{active: activeColor=='orange'}]" @click.native="selectColor('orange')"></pixel>
-                <pixel :class="['yellow',{active: activeColor=='yellow'}]" @click.native="selectColor('yellow')"></pixel>
-                <pixel :class="['white',{active: activeColor=='white'}]" @click.native="selectColor('white')"></pixel>
-            </div>
-            <div class="canvas">
-                <pixel v-for="n in 20*20" :key="n" :color="colorArr[n]" @click.native="fillPixel(n)"></pixel>
-            </div>
-        </div>
-        <div class="row">
-            <button class="btn btn-danger btn-clear" @click="clear()">Clear canvas</button>
-        </div>
-
+    <div id="app">
     </div>
 
     
