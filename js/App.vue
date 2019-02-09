@@ -114,7 +114,7 @@ export default {
     },
     onMove(evt, n) {
       if (this.dragging) {
-        fillPixel(n);
+        this.fillPixel(n);
       }
     },
     fillPixel(n) {
