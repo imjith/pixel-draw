@@ -1,9 +1,9 @@
 <template>
-	<div :class="['pixel', color]"></div>
+  <div :class="['pixel', color]"></div>
 </template>
 <script>
-	export default {
-		props: ['color'],
-		name: 'Pixel'
-	}
+export default {
+  props: ["color", "w", "h"],
+  name: "Pixel"
+};
 </script>
