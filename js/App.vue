@@ -53,7 +53,13 @@
           @click.native="selectColor(color)"
         ></Pixel>
       </div>
-      <div class="canvas" :style="{ width: colCount*pixelSize + 'px'}">
+      <div
+        class="canvas"
+        :style="{ width: colCount*pixelSize + 'px'}"
+        @mouseleave="stopDrag"
+        @mouseup="stopDrag"
+        @mousedown="startDrag"
+      >
         <Pixel
           v-for="n in totalPixels"
           :key="n"
@@ -61,12 +67,9 @@
           :color="colorArr[n]"
           @click.native="fillPixel(n)"
           @mousemove.native="onMove($event, n)"
-          @mouseup.native="stopDrag"
-          @mousedown.native="startDrag"
         ></Pixel>
       </div>
     </div>
-    
   </div>
 </template>
 
@@ -111,7 +114,7 @@ export default {
     },
     onMove(evt, n) {
       if (this.dragging) {
-        this.colorArr.splice(n, 1, this.activeColor);
+        fillPixel(n);
       }
     },
     fillPixel(n) {
@@ -122,8 +125,6 @@ export default {
     },
     changePixelSize() {
       this.totalPixels = this.rowCount * this.colCount;
-    //   this.colorArr = Array(this.totalPixels).fill("white");
-      console.log(this.colorArr.length);
     }
   }
 };
