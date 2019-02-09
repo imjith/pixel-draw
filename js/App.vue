@@ -53,7 +53,7 @@
           @click.native="selectColor(color)"
         ></Pixel>
       </div>
-      <div class="canvas" :style="{ width: rowCount*pixelSize + 'px'}">
+      <div class="canvas" :style="{ width: colCount*pixelSize + 'px'}">
         <Pixel
           v-for="n in totalPixels"
           :key="n"
