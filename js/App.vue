@@ -16,7 +16,7 @@
     <div class="slidecontainer">
       <input
         v-model="rowCount"
-        @change="changeRowSize"
+        @input="changeRowSize"
         type="range"
         :min="rowMin"
         :max="rowMax"
@@ -29,7 +29,7 @@
     <div class="slidecontainer">
       <input
         v-model="colCount"
-        @change="changeColSize"
+        @input="changeColSize"
         type="range"
         :min="colMin"
         :max="colMax"
@@ -37,6 +37,7 @@
         class="slider"
         id="colCount"
       >
+      <pre>{{ colCount }}</pre>
       <label for="colCount">Column count</label>
     </div>
     <div class="row">
@@ -141,20 +142,21 @@ export default {
       this.pixelArr = [];
     },
     changeRowSize() {
-      this.calculateTotalPix();
       this.reArrageColors();
       if (this.rowCount < this.prevRowCount) {
         this.clearOutBoundPixels();
       }
       this.prevRowCount = this.rowCount;
+      this.calculateTotalPix();
+      
     },
     changeColSize() {
-      this.calculateTotalPix();
       this.reArrageColors();
       if (this.colCount < this.prevColCount) {
         this.clearOutBoundPixels();
       }
       this.prevColCount = this.colCount;
+      this.calculateTotalPix();
     },
     reArrageColors() {
       for (let i = 0; i < this.totalPixels; i++) {
