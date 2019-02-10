@@ -4,10 +4,9 @@
     <div class="slidecontainer">
       <input
         v-model="pixelSize"
-        @change="changePixelSize"
         type="range"
-        min="15"
-        max="30"
+        :min="pixelCountMin"
+        :max="pixelCountMax"
         value="1"
         class="slider"
         id="pixelSize"
@@ -17,10 +16,10 @@
     <div class="slidecontainer">
       <input
         v-model="rowCount"
-        @change="changePixelSize"
+        @change="changeRowSize"
         type="range"
-        min="15"
-        max="30"
+        :min="rowMin"
+        :max="rowMax"
         value="1"
         class="slider"
         id="rowCount"
@@ -30,10 +29,10 @@
     <div class="slidecontainer">
       <input
         v-model="colCount"
-        @change="changePixelSize"
+        @change="changeColSize"
         type="range"
-        min="15"
-        max="30"
+        :min="colMin"
+        :max="colMax"
         value="1"
         class="slider"
         id="colCount"
@@ -64,9 +63,9 @@
           v-for="n in totalPixels"
           :key="n"
           :style="{ width: pixelSize + 'px' , height: pixelSize + 'px'}"
-          :color="colorArr[n]"
-          @click.native="fillPixel(n)"
-          @mousemove.native="onMove($event, n)"
+          :color="colorArr[n-1]"
+          @click.native="fillPixel(n-1)"
+          @mousemove.native="onMove($event, n-1)"
         ></Pixel>
       </div>
     </div>
@@ -95,11 +94,20 @@ export default {
         "white"
       ],
       dragging: false,
-      pixelSize: 20,
-      rowCount: 20,
-      colCount: 20,
-      totalPixels: 400,
-      colorArr: Array(400).fill("white")
+      pixelSize: 15,
+      rowCount: 15,
+      colCount: 15,
+      prevColCount: 15,
+      prevRowCount: 15,
+      totalPixels: 225,
+      colorArr: Array(226).fill("white"),
+      pixelCountMin: 15,
+      pixelCountMax: 30,
+      rowMin: 15,
+      rowMax: 30,
+      colMin: 15,
+      colMax: 30,
+      pixelArr: []
     };
   },
   methods: {
@@ -119,12 +127,67 @@ export default {
     },
     fillPixel(n) {
       this.colorArr.splice(n, 1, this.activeColor);
+
+      let row = Math.floor(n / this.colCount);
+      let col = n % this.colCount;
+      let pixelArr = this.pixelArr;
+      if (typeof pixelArr[row] === "undefined") {
+        pixelArr[row] = [];
+      }
+      pixelArr[row][col] = this.activeColor;
     },
     clear() {
       this.colorArr = Array(this.totalPixels).fill("white");
+      this.pixelArr = [];
     },
-    changePixelSize() {
+    changeRowSize() {
+      this.calculateTotalPix();
+      this.reArrageColors();
+      if (this.rowCount < this.prevRowCount) {
+        this.clearOutBoundPixels();
+      }
+      this.prevRowCount = this.rowCount;
+    },
+    changeColSize() {
+      this.calculateTotalPix();
+      this.reArrageColors();
+      if (this.colCount < this.prevColCount) {
+        this.clearOutBoundPixels();
+      }
+      this.prevColCount = this.colCount;
+    },
+    reArrageColors() {
+      for (let i = 0; i < this.totalPixels; i++) {
+        let row = Math.floor(i / this.colCount);
+        let col = i % this.colCount;
+        this.colorArr.splice(i, 1, this.getColor(row, col));
+      }
+    },
+    calculateTotalPix(){
       this.totalPixels = this.rowCount * this.colCount;
+    },
+    clearOutBoundPixels() {
+      let tmp = [];
+      for (let i = 0; i < this.rowCount; i++) {
+        let p = this.pixelArr[i];
+        if (typeof p !== "undefined") {
+          tmp[i] = [];
+          for (let j = 0; j < this.colCount; j++) {
+            tmp[i][j] = p[j];
+          }
+        }
+      }
+      this.pixelArr = tmp;
+    },
+    getColor(row, col) {
+      let pixelArr = this.pixelArr;
+      if (
+        typeof pixelArr[row] !== "undefined" &&
+        typeof pixelArr[row][col] !== "undefined"
+      ) {
+        return pixelArr[row][col];
+      }
+      return "white";
     }
   }
 };
