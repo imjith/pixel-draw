@@ -16,7 +16,7 @@
     <div class="slidecontainer">
       <input
         v-model="rowCount"
-        @change="changeRowSize"
+        @input="changeRowSize"
         type="range"
         :min="rowMin"
         :max="rowMax"
@@ -29,7 +29,7 @@
     <div class="slidecontainer">
       <input
         v-model="colCount"
-        @change="changeColSize"
+        @input="changeColSize"
         type="range"
         :min="colMin"
         :max="colMax"
@@ -41,6 +41,7 @@
     </div>
     <div class="row">
       <button class="btn btn-danger btn-clear" @click="clear()">Clear canvas</button>
+      <button class="btn btn-success btn-clear" @click="saveFile">Save me</button>
     </div>
     <div class="row">
       <div class="color-picker">
@@ -54,6 +55,7 @@
       </div>
       <div
         class="canvas"
+        id="canvas"
         :style="{ width: colCount*pixelSize + 'px'}"
         @mouseleave="stopDrag"
         @mouseup="stopDrag"
@@ -74,7 +76,8 @@
 
 <script>
 import Pixel from "./Pixel.vue";
-
+import FileSaver from 'file-saver';
+import html2canvas from 'html2canvas';
 export default {
   components: {
     Pixel
@@ -93,6 +96,7 @@ export default {
         "yellow",
         "white"
       ],
+      saveFilePath: null,
       dragging: false,
       pixelSize: 15,
       rowCount: 15,
@@ -125,6 +129,9 @@ export default {
         this.fillPixel(n);
       }
     },
+    saveFile(e) {
+      console.log(e);
+    },
     fillPixel(n) {
       this.colorArr.splice(n, 1, this.activeColor);
 
@@ -141,20 +148,21 @@ export default {
       this.pixelArr = [];
     },
     changeRowSize() {
-      this.calculateTotalPix();
       this.reArrageColors();
       if (this.rowCount < this.prevRowCount) {
         this.clearOutBoundPixels();
       }
       this.prevRowCount = this.rowCount;
+      this.calculateTotalPix();
+      
     },
     changeColSize() {
-      this.calculateTotalPix();
       this.reArrageColors();
       if (this.colCount < this.prevColCount) {
         this.clearOutBoundPixels();
       }
       this.prevColCount = this.colCount;
+      this.calculateTotalPix();
     },
     reArrageColors() {
       for (let i = 0; i < this.totalPixels; i++) {
@@ -188,6 +196,14 @@ export default {
         return pixelArr[row][col];
       }
       return "white";
+    },
+    saveFile() {
+      let canvas = html2canvas(document.getElementById('canvas')).then(canvas => {
+        canvas.toBlob(function(blob) {
+            saveAs(blob, "mycanvas.png");
+        });
+      });
+      
     }
   }
 };
