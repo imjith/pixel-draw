@@ -195,7 +195,7 @@ export default {
       return "white";
     },
     saveFile() {
-      let canvas = html2canvas(document.getElementById('canvas')).then(canvas => {
+      html2canvas(document.getElementById('canvas')).then(canvas => {
         canvas.toBlob(function(blob) {
             saveAs(blob, "mycanvas.png");
         });
