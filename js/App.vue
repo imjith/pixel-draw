@@ -144,10 +144,10 @@ export default {
       this.colorArr = Array(this.totalPixels).fill("white");
       this.pixelArr = [];
     },
-    changeRowSize() {
-      this.reArrageColors();
+    changeRowSize() {     
       if (this.rowCount < this.prevRowCount) {
         this.clearOutBoundPixels();
+         this.reArrageColors();
       }
       this.prevRowCount = this.rowCount;
       this.calculateTotalPix();
