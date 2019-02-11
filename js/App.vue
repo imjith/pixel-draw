@@ -129,9 +129,6 @@ export default {
         this.fillPixel(n);
       }
     },
-    saveFile(e) {
-      console.log(e);
-    },
     fillPixel(n) {
       this.colorArr.splice(n, 1, this.activeColor);
 
